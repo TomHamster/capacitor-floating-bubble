@@ -16,9 +16,26 @@
         This project can be used to test out the functionality of your plugin. Nothing in the
         <em>example-app/</em> folder will be published to npm when using this template, so you can create away!
       </p>
+      <div id="text"></div>
       <button onclick="showBuble()">ShowBuble</button>
+      <button onclick="showAlert()">Show Alert</button>
+      <button onclick="sendNativeEvent()">Native event</button>
     </main>
+<script>
+  function sendNativeEvent() {
+    if (window.MyAppInterface) {
+      window.MyAppInterface.sendEvent("Cześć z JS!");
+    } else {
+      console.warn("MyAppInterface nie jest dostępne");
+    }
+  }
 
+  window.showAlert = () =>{
+    window.alert('alert')
+
+    document.querySelector('#text').innerText = 'Hello World!'
+  }
+</script>
     <script src="./js/example.js" type="module"></script>
   </body>
 </html>

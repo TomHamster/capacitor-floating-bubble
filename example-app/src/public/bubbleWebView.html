@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="en" dir="ltr" class="hydrated">
+<head>
+    <meta charset="UTF-8" />
+    <title>Example Capacitor App</title>
+    <meta
+            name="viewport"
+            content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+</head>
+<body>
+<main>
+    <h1>Floating Bubble View</h1>
+    <p>
+        This view should be displayed in the expand bubble view.
+    </p>
+    <button onclick="sendToCapacitor()">Message to Capacitor</button>
+    <div id="text"></div>
+</main>
+<script>
+
+    window.addEventListener('onCapacitorMessage', function(e) {
+        document.querySelector('#text').innerText += JSON.stringify(e.detail);
+    });
+
+    window.sendToCapacitor =() =>{
+
+        if (window.FloatingBubbleWebViewMessenger) {
+            window.FloatingBubbleWebViewMessenger.sendMessage("Hi, I'm from Bubble");
+        } else {
+            console.warn("FloatingBubbleWebViewMessenger is not available");
+        }
+    }
+</script>
+</body>
+</html>

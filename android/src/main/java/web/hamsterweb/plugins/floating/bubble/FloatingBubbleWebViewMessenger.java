@@ -1,19 +1,19 @@
 package web.hamsterweb.plugins.floating.bubble;
 
 import android.content.Context;
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 
-public class WebAppInterface {
+public class FloatingBubbleWebViewMessenger {
     Context context;
 
-    public WebAppInterface(Context context) {
+    public FloatingBubbleWebViewMessenger(Context context) {
         this.context = context;
     }
 
     @JavascriptInterface
-    public void sendEvent(String data) {
-        Log.d("WebAppInterface", "JS sent event: " + data);
+    public void sendMessage(String data) {
+        FloatingBubblePlugin.sendEventToCapacitor(data);
     }
+
 }
 

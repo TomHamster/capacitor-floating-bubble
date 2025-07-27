@@ -3,13 +3,17 @@ package web.hamsterweb.plugins.floating.bubble;
 import static web.hamsterweb.plugins.floating.bubble.BubbleHelper.getCircularBitmap;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import androidx.annotation.Nullable;
+
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -24,8 +28,42 @@ import com.torrydo.floatingbubbleview.service.expandable.ExpandedBubbleBuilder;
 
 
 public class FloatingBubbleService extends ExpandableBubbleService {
+    public static final String ACTION_REMOVE_BUBBLE = "REMOVE_BUBBLE";
+    public static final String ACTION_SEND_TO_WEBVIEW = "SEND_TO_WEBVIEW";
+
     private String imageBase64 = null;
     private Bitmap circularBitmap = null;
+    private WebView webView = null;
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && ACTION_REMOVE_BUBBLE.equals(intent.getAction())) {
+            assert getBubble() != null;
+            getBubble().remove();
+        } else if (intent != null && ACTION_SEND_TO_WEBVIEW.equals(intent.getAction())){
+            String message = intent.getStringExtra("message");
+            Log.d("MESSAge", "MESSAGE:" + message);
+            if (message == null) {
+                message = "";
+            }
+
+            String safeMessage = message.replace("\"", "\\\"");
+            Log.d("MESSAge", "safeMessage:" + safeMessage + (webView != null));
+            String js = "javascript:window.dispatchEvent(new CustomEvent('onCapacitorMessage', { detail: { message: \"" + safeMessage + "\" } }))";
+
+            if (webView != null) {
+                webView.post(() -> {
+                    webView.evaluateJavascript(js, null);
+                });
+            }
+        }
+        else {
+            minimize();
+        }
+
+        return START_STICKY;
+    }
 
     @Override
     public void onCreate() {
@@ -90,7 +128,7 @@ public class FloatingBubbleService extends ExpandableBubbleService {
         View bubbleView = ViewHelper.fromBitmap(this, circularBitmap, 60, 60);
 //        layout.addView(bubbleView);
 
-        WebView webView = expandedView.findViewById(R.id.webview);
+        webView = expandedView.findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
@@ -99,11 +137,14 @@ public class FloatingBubbleService extends ExpandableBubbleService {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webView.setWebChromeClient(new WebChromeClient());
-        webView.addJavascriptInterface(new WebAppInterface(this), "MyAppInterface");
-        webView.loadUrl("file:///android_asset/public/index.html");
+        webView.addJavascriptInterface(new FloatingBubbleWebViewMessenger(this), "FloatingBubbleWebViewMessenger");
+
+
+
+        webView.loadUrl("file:///android_asset/public/bubbleWebView.html");
 
         btn.setOnClickListener(v -> {
-        minimize();
+            minimize();
         });
 
         return new ExpandedBubbleBuilder(this)

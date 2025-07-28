@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -43,13 +42,13 @@ public class FloatingBubbleService extends ExpandableBubbleService {
             getBubble().remove();
         } else if (intent != null && ACTION_SEND_TO_WEBVIEW.equals(intent.getAction())){
             String message = intent.getStringExtra("message");
-            Log.d("MESSAge", "MESSAGE:" + message);
+
             if (message == null) {
                 message = "";
             }
 
             String safeMessage = message.replace("\"", "\\\"");
-            Log.d("MESSAge", "safeMessage:" + safeMessage + (webView != null));
+
             String js = "javascript:window.dispatchEvent(new CustomEvent('onCapacitorMessage', { detail: { message: \"" + safeMessage + "\" } }))";
 
             if (webView != null) {

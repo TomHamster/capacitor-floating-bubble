@@ -107,9 +107,6 @@ public class FloatingBubblePlugin extends Plugin {
 
         Intent intent = new Intent(context, FloatingBubbleService.class);
         String message = call.getString("message", "");
-
-
-        Log.d("tag", message);
         intent.putExtra("message", message);
         intent.setAction(FloatingBubbleService.ACTION_SEND_TO_WEBVIEW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

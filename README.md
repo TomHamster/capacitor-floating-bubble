@@ -1,6 +1,6 @@
 # capacitor-floating-bubble
 
-An Capoacitor library that creates floating bubbles on top of the screen
+An Capacitor library that creates floating bubbles on top of the screen
 
 <h6> Like this project? 🥰 Don't forget to show some love by giving a Star⭐ </h6>
 
@@ -141,3 +141,7 @@ Sends a message to Capacitor event 'onBubbleMessage'
 --------------------
 
 </docgen-api>
+
+## Notice
+This product includes software developed at
+Floating-Bubble-View by dofire (https://github.com/dofire/Floating-Bubble-View).

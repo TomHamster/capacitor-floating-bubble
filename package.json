@@ -1,7 +1,7 @@
 {
   "name": "capacitor-floating-bubble",
   "version": "0.0.1",
-  "description": "blablbala",
+  "description": "An Capacitor library that creates floating bubbles on top of the screen",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -16,13 +16,13 @@
     "CapacitorFloatingBubble.podspec"
   ],
   "author": "Tomasz Chomicz",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hamsterweb/capacitor-floating-bubble.git"
+    "url": "git+https://github.com/TomHamster/capacitor-floating-bubble.git"
   },
   "bugs": {
-    "url": "https://github.com/hamsterweb/capacitor-floating-bubble/issues"
+    "url": "https://github.com/TomHamster/capacitor-floating-bubble/issues"
   },
   "keywords": [
     "capacitor",

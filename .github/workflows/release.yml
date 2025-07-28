@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'  # np. v1.0.0
+
 jobs:
   publish:
     runs-on: ubuntu-latest

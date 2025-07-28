@@ -1,6 +1,6 @@
 {
   "name": "capacitor-floating-bubble",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "An Capacitor library that creates floating bubbles on top of the screen",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

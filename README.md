@@ -1,5 +1,21 @@
 # capacitor-floating-bubble
 
+An Capoacitor library that creates floating bubbles on top of the screen
+
+<h6> Like this project? 🥰 Don't forget to show some love by giving a Star⭐ </h6>
+
+<img src="https://github.com/TomHamster/assets-for-projects/blob/main/capacitor-floating-bubble/demo_284.gif?raw=true">
+
+[<img src="https://img.shields.io/badge/platform-Android-yellow.svg" valign="middle">](https://www.android.com)
+[<img src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat" valign="middle">](https://android-arsenal.com/api?level=21)
+[<img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" valign="middle">](https://www.apache.org/licenses/LICENSE-2.0)
+
+|  Type   | Supported platforms |
+|:-------:|:------------------:|
+| Android |         ✅          |
+|   iOS   |         ❌          |
+|   PWA   |         ❌          |
+
 ## Install
 
 ```bash
@@ -8,6 +24,7 @@ npx cap sync
 ```
 
 ## Configuration
+
 These config values are available:
 
 | Prop        |  Type  | Description                                                                     |
@@ -27,6 +44,10 @@ In `capacitor.config.json`
   }
 }
 ```
+### Expand Floating Bubble WebView
+
+File: `bubbleWebView.html`
+Look on example-app
 
 ## FloatingBubblePlugin API
 

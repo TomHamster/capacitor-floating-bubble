@@ -22,6 +22,20 @@ An Capacitor library that creates floating bubbles on top of the screen
 npm install capacitor-floating-bubble
 npx cap sync
 ```
+# ⚠️ WARNING⚠️
+
+If necessary, overwrite the androidx.window version
+`your-app/android/app/build.gradle`
+```
+configurations.all {
+    resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'androidx.window') {
+            details.useVersion '1.1.0'
+            details.because 'capacitor-floating-bubble is not compatible with 1.4.0'
+        }
+    }
+}
+```
 
 ## Configuration
 
@@ -44,11 +58,16 @@ In `capacitor.config.json`
   }
 }
 ```
-### Expand Floating Bubble WebView
+
+### ⚠️ Expand Floating Bubble WebView ⚠️
 
 File: `bubbleWebView.html`
-Look on example-app
 
+Look at example-app
+
+https://github.com/TomHamster/capacitor-floating-bubble/blob/main/example-app/src/public/bubbleWebView.html
+
+and serve file from the main path of app``  assetsInclude: ['public/**'],``
 ## FloatingBubblePlugin API
 
 <docgen-index>

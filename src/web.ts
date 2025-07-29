@@ -1,5 +1,4 @@
 import {WebPlugin} from '@capacitor/core';
-import * as console from "node:console";
 
 import type {FloatingBubblePlugin} from './definitions';
 
